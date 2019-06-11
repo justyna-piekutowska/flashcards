@@ -48,4 +48,10 @@ h1 {
 	height: 30%;
 	width: 50%;
 	background-color: grey;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#flashcard_text {
+	height: 25px;
 }
