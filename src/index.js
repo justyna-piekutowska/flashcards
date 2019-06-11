@@ -20,6 +20,9 @@ class App extends Component {
             <div className="flashcard">
               <FlashcardText />
             </div>
+            <div className="nextButton">
+              <button>Next</button>
+            </div>
           </div>
         </div>
       )
