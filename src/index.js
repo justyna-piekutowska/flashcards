@@ -29,7 +29,11 @@ class App extends Component {
 class FlashcardText extends Component {
   constructor(props) {
     super(props)
-    this.state = {expression: {pl: String, en: String}};
+    this.state = {
+      expression: {pl: String, en: String},
+      currentlyDisplayed: String
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -46,13 +50,35 @@ class FlashcardText extends Component {
     const selectedFlashcard = flashcardsData[flashcardKey];
 
     this.setState({
-      expression: {pl: selectedFlashcard.pl, en: selectedFlashcard.en }
+      expression: {pl: selectedFlashcard.pl, en: selectedFlashcard.en},
+      currentlyDisplayed: selectedFlashcard.pl
     });
   }
 
+  newWordAfterClick() {
+    const currentlyDisplayed = this.state.currentlyDisplayed;
+    const currentlyExpression = this.state.expression;
+
+    if (currentlyExpression.pl === currentlyDisplayed) {
+      return currentlyExpression.en;
+    } else {
+      return currentlyDisplayed;
+    }
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    const newWord = this.newWordAfterClick();
+    this.setState({
+      currentlyDisplayed: newWord
+    })
+  }
+
+
+
   render() {
     return (
-      <p id="flashcard_text">{this.state.expression.pl}</p>
+      <p id="flashcard_text" onClick={this.handleClick}>{this.state.currentlyDisplayed}</p>
       );
   }
 }
