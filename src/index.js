@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = this.saveFlashcard();
     this.handleClick = this.handleClick.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   getRandomInt(max) {
@@ -48,6 +49,10 @@ class App extends Component {
     })
   }
 
+  handleButtonClick(e) {
+    e.preventDefault();
+  }
+
   render () {
     return (
         <div>
@@ -65,30 +70,12 @@ class App extends Component {
             <div className="flashcard">
               <p id="flashcard_text" onClick={this.handleClick}>{this.state.currentlyDisplayed}</p>
             </div>
-            <NextExpression />
+            <div className="nextButton">
+              <button onClick={this.handleButtonClick}>Next</button>
+            </div>
           </div>
         </div>
       )
-  }
-}
-
-class NextExpression extends Component {
-  constructor(props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-    console.log("tu",this.props);
-  }
-
-  render() {
-    return (
-      <div className="nextButton">
-        <button onClick={this.handleClick}>Next</button>
-      </div>
-    );
   }
 }
 
