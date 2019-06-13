@@ -28,16 +28,9 @@ class App extends Component {
 
 class FlashcardText extends Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      expression: {pl: String, en: String},
-      currentlyDisplayed: String
-    };
+    super(props);
+    this.state = this.saveFlashcard();
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.saveFlashcard();
   }
 
   getRandomInt(max) {
@@ -45,14 +38,18 @@ class FlashcardText extends Component {
   }
 
   saveFlashcard() {
-    const flashcardsData = [{pl: "poprawny", en: "valid"}, {pl: "założyć", en: "assume"}, {pl: "zbiór/ustawić", en: "set"}];
+    const flashcardsData = [
+      {pl: "poprawny", en: "valid"},
+      {pl: "założyć", en: "assume"},
+      {pl: "zbiór/ustawić", en: "set"}
+    ];
     const flashcardKey = this.getRandomInt(flashcardsData.length);
     const selectedFlashcard = flashcardsData[flashcardKey];
 
-    this.setState({
+    return {
       expression: {pl: selectedFlashcard.pl, en: selectedFlashcard.en},
       currentlyDisplayed: selectedFlashcard.pl
-    });
+    };
   }
 
   newWordAfterClick() {
