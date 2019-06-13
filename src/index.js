@@ -48,6 +48,25 @@ class App extends Component {
     }
   }
 
+  findNewKey(currentKey){
+    if (currentKey < flashcardsDataLength - 1) {
+      return currentKey + 1;
+    } else {
+      return this.flashcardKey()
+    }
+  }
+
+  nextExpression(){
+    const currentExpressionKey = this.state.flashcardKey;
+    const newExpressionKey = this.findNewKey(currentExpressionKey);
+    const selectedFlashcard = flashcardsData[newExpressionKey];
+    this.setState({
+      flashcardKey: newExpressionKey,
+      expression: {pl: selectedFlashcard.pl, en: selectedFlashcard.en},
+      currentlyDisplayed: selectedFlashcard.pl
+    })
+  }
+
   handleClick(e) {
     e.preventDefault();
     const newWord = this.newWordAfterClick();
@@ -58,6 +77,7 @@ class App extends Component {
 
   handleButtonClick(e) {
     e.preventDefault();
+    this.nextExpression();
   }
 
   render () {
