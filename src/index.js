@@ -3,30 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class App extends Component {
-  render () {
-    return (
-        <div>
-          <div className="header">
-           	<h1>YourOwnFlashcards</h1>
-           	<div className="hamburgerMenu">
-        		<div className="hamburgerBars">
-                	<div className="TopBar"></div>
-                	<div className="CenterBar"></div>
-                	<div className="BottomBar"></div>
-             	</div>
-           	</div>
-          </div>
-          <div className="flashcardElement">
-            <div className="flashcard">
-              <FlashcardText />
-            </div>
-          </div>
-        </div>
-      )
-  }
-}
 
-class FlashcardText extends Component {
   constructor(props) {
     super(props);
     this.state = this.saveFlashcard();
@@ -71,12 +48,26 @@ class FlashcardText extends Component {
     })
   }
 
-
-
-  render() {
+  render () {
     return (
-      <p id="flashcard_text" onClick={this.handleClick}>{this.state.currentlyDisplayed}</p>
-      );
+        <div>
+          <div className="header">
+           	<h1>YourOwnFlashcards</h1>
+           	<div className="hamburgerMenu">
+        		<div className="hamburgerBars">
+                	<div className="TopBar"></div>
+                	<div className="CenterBar"></div>
+                	<div className="BottomBar"></div>
+             	</div>
+           	</div>
+          </div>
+          <div className="flashcardElement">
+            <div className="flashcard">
+              <p id="flashcard_text" onClick={this.handleClick}>{this.state.currentlyDisplayed}</p>
+            </div>
+          </div>
+        </div>
+      )
   }
 }
 
