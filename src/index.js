@@ -2,6 +2,14 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const flashcardsData = [
+  {pl: "poprawny", en: "valid"},
+  {pl: "założyć", en: "assume"},
+  {pl: "zbiór/ustawić", en: "set"}
+];
+
+const flashcardsDataLength = flashcardsData.length;
+
 class App extends Component {
 
   constructor(props) {
@@ -15,16 +23,15 @@ class App extends Component {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
+  flashcardKey() {
+    return this.getRandomInt(flashcardsDataLength);
+  }
+
   saveFlashcard() {
-    const flashcardsData = [
-      {pl: "poprawny", en: "valid"},
-      {pl: "założyć", en: "assume"},
-      {pl: "zbiór/ustawić", en: "set"}
-    ];
-    const flashcardKey = this.getRandomInt(flashcardsData.length);
-    const selectedFlashcard = flashcardsData[flashcardKey];
+    const selectedFlashcard = flashcardsData[this.flashcardKey()];
 
     return {
+      flashcardKey: this.flashcardKey(),
       expression: {pl: selectedFlashcard.pl, en: selectedFlashcard.en},
       currentlyDisplayed: selectedFlashcard.pl
     };
